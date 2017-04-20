@@ -1,4 +1,4 @@
-function [b, o]= simulator1(lambda,invmiu,C,M,R)
+function [b, o]= simulator1(lambda,invmiu,C,M,R,N)
 %lambda = request arrival rate (in requests per hour)
 %invmiu= average movie duration (in minutes)
 %C= Internet connection capacity (in Mbps)
@@ -27,11 +27,13 @@ while NARRIVALS < R
     if event == ARRIVAL
         EventList= [EventList; ARRIVAL Clock+exprnd(invlambda)];
         NARRIVALS= NARRIVALS+1;
-        if STATE + M <= C
-            STATE= STATE+M;
-            EventList= [EventList; DEPARTURE Clock+exprnd(invmiu)];
-        else
-            BLOCKED= BLOCKED+1;
+        if NARRIVALS >= N
+            if STATE + M <= C
+                STATE= STATE+M;
+                EventList= [EventList; DEPARTURE Clock+exprnd(invmiu)];
+            else
+                BLOCKED= BLOCKED+1;
+            end
         end
     else
         STATE= STATE-M;
