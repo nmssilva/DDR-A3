@@ -27,7 +27,7 @@ while NARRIVALS < N
     
     if event == ARRIVAL
         EventList= [EventList; ARRIVAL Clock+exprnd(invlambda)];
-        %NARRIVALS= NARRIVALS+1;
+        NARRIVALS= NARRIVALS+1;
         if NARRIVALS >= N
             if STATE + M <= C
                 STATE= STATE+M;
@@ -66,6 +66,6 @@ while NARRIVALS < R
     EventList= sortrows(EventList,2);
 end
 
-b= BLOCKED/NARRIVALS
-o= LOAD/Clock
+b= BLOCKED/NARRIVALS;
+o= LOAD/Clock;
 end
