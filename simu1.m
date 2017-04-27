@@ -17,6 +17,31 @@ BLOCKED= 0;
 %Simulation Clock and initial List of Events:
 Clock= 0;
 EventList= [ARRIVAL exprnd(invlambda)];
+
+while NARRIVALS < N
+    event= EventList(1,1);
+    Previous_Clock= Clock;
+    Clock= EventList(1,2);
+    EventList(1,:)= [];
+    LOAD= LOAD + STATE*(Clock-Previous_Clock);
+    
+    if event == ARRIVAL
+        EventList= [EventList; ARRIVAL Clock+exprnd(invlambda)];
+        %NARRIVALS= NARRIVALS+1;
+        if NARRIVALS >= N
+            if STATE + M <= C
+                STATE= STATE+M;
+                EventList= [EventList; DEPARTURE Clock+exprnd(invmiu)];
+            else
+                %BLOCKED= BLOCKED+1;
+            end
+        end
+    else
+        STATE= STATE-M;
+    end
+    EventList= sortrows(EventList,2);
+end
+
 while NARRIVALS < R
     event= EventList(1,1);
     Previous_Clock= Clock;

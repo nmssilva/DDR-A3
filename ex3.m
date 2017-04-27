@@ -1,22 +1,26 @@
-lambda = 1;
+lambda = 50;
+p = 0.4;
 invmiu = 90;
-C = 10;
-M = 2;
+S = 3;
+W = 240;
+Ms = 2;
+Mh = 5;
 
 R = 10000;
+N = 1000;
 
-No = 100; %número de simulações
+No = 40; %número de simulações
 results= zeros(No, 2); %vetor com os N resultados de simulação
 for it= 1:No
-[results(it,1) results(it, 2)]= simu1(lambda,invmiu,C,M,R,N);
+[results(it,1) results(it, 2)] = simu2( lambda, p, invmiu, S, W, Ms, Mh, R, N);
 end
 
 alfa= 0.1; %intervalo de confiança a 90%
 media = mean(results(:,1));
 termo = norminv(1-alfa/2)*sqrt(var(results(:,1))/No);
-fprintf('p(b) = %.2e +- %.2e\n',media,termo);
+fprintf('p(bs) = %.2e +- %.2e\n',media,termo);
 
 alfa= 0.1; %intervalo de confiança a 90%
 media = mean(results(:,2));
 termo = norminv(1-alfa/2)*sqrt(var(results(:,2))/No);
-fprintf('p(o) = %.2e +- %.2e\n',media,termo);
+fprintf('p(bh) = %.2e +- %.2e\n',media,termo);
