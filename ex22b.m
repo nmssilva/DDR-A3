@@ -8,7 +8,7 @@ R = 10000;
 No = 100; %número de simulações
 results= zeros(No, 2); %vetor com os N resultados de simulação
 for it= 1:No
-[results(it,1) results(it, 2)]= originalsimu1(lambda,invmiu,C,M,R,N);
+[results(it,1) results(it, 2)]= simu1(lambda,invmiu,C,M,R,N);
 end
 
 alfa= 0.1; %intervalo de confiança a 90%
