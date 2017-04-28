@@ -1,4 +1,4 @@
-function [b, o]= simulator1(lambda,invmiu,C,M,R,N)
+function [b, o]= originalsimu1(lambda,invmiu,C,M,R,N)
 %lambda = request arrival rate (in requests per hour)
 %invmiu= average movie duration (in minutes)
 %C= Internet connection capacity (in Mbps)

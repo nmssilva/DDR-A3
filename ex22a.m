@@ -2,10 +2,11 @@ lambda = 1;
 invmiu = 90;
 C = 10;
 M = 2;
+N=0;
 
 R = 10000;
 
-No = 100; %número de simulações
+No = 10; %número de simulações
 results= zeros(No, 2); %vetor com os N resultados de simulação
 for it= 1:No
 [results(it,1) results(it, 2)]= originalsimu1(lambda,invmiu,C,M,R,N);
