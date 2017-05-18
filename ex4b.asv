@@ -1,0 +1,30 @@
+subscribers = nT2 * subscribersT2 + nT3 * subscribersT3;
+
+invmiu = 90;
+R = 10000;
+N = 1000;
+Ms = 2;
+M = 5;
+
+p = 0.2;
+lambda = 2 * subscribers / (7 * 24);
+S = 20:30;
+W = 95;
+
+iterations = 40;
+bSD = zeros(length(W), iterations);
+bHS = zeros(length(W), iterations);
+
+fprintf('S;BSD;BHD\n');
+for j = 1:length(S)
+    for i = 1:iterations
+        [bsd, bhd] = simulator2(L, P, I, S(j), W, MSD, MHD, R, N);
+        [bsh, bhd] = simu2(lambda, p, invmiu, S, W(j), Ms, Mh, R, N);
+        bSD(j, i) = bsd;
+        bHS(j, i) = bhd;
+    end
+    
+    fprintf('%d;', S(j));
+    fprintf('%.6f;', mean(bSD(j, :)));
+    fprintf('%.6f\n', mean(bHS(j, :)));
+end
